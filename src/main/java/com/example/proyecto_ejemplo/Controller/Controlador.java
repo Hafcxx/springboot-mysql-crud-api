@@ -2,6 +2,8 @@ package com.example.proyecto_ejemplo.Controller;
 
 import com.example.proyecto_ejemplo.Entity.Persona;
 import com.example.proyecto_ejemplo.Service.PersonaServiceIMPL.PSIMPL;
+import com.example.proyecto_ejemplo.Entity.Evento;
+import com.example.proyecto_ejemplo.Service.EventoServiceIMPL.ESIMPL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +16,16 @@ import java.util.List;
 public class Controlador {
     @Autowired
     private PSIMPL impl;
+    @Autowired
+    private ESIMPL eimpl;
 
+
+    @GetMapping
+    @RequestMapping(value = "evento",method = RequestMethod.GET)
+    public ResponseEntity<?> consultarEvento(@RequestParam(name = "centroId") int centroId, @RequestParam(name = "mesId") int mesId){
+        List<Evento> listaEvento = this.eimpl.consultarEvento(centroId, mesId);
+        return ResponseEntity.ok(listaEvento);
+    }
     @GetMapping
     @RequestMapping(value = "persona",method = RequestMethod.GET)
     public ResponseEntity<?> consultarPersona(){

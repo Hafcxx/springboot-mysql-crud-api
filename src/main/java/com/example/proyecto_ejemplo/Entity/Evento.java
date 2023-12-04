@@ -9,9 +9,15 @@ public class Evento {
     @Column(name = "id")
     private int id;
     @Column(name = "centro_id")
-    private int centro_id;
+    private int centroId;
+    @Column(name = "mes_id")
+    private int mesId;
     @Column(name = "nombre")
     private String nombre;
+    @Column(name = "fecha_inicio")
+    private String fecha_inicio;
+    @Column(name = "fecha_termino")
+    private String fecha_termino;
     @Column(name = "detalle")
     private String detalle;
     @Column(name = "image")
@@ -25,12 +31,20 @@ public class Evento {
         this.id = id;
     }
 
-    public int getCentro_id() {
-        return centro_id;
+    public int getCentroId() {
+        return centroId;
     }
 
-    public void setCentro_id(int centro_id) {
-        this.centro_id = centro_id;
+    public void setCentroId(int centro_id) {
+        this.centroId = centro_id;
+    }
+
+    public int getMesId() {
+        return mesId;
+    }
+
+    public void setMesId(int mes_id) {
+        this.mesId = mes_id;
     }
 
     public String getNombre() {
@@ -39,6 +53,22 @@ public class Evento {
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getFechaInicio() {
+        return fecha_inicio;
+    }
+
+    public void setFechaInicio(String fecha_inicio) {
+        this.fecha_inicio = fecha_inicio;
+    }
+
+    public String getFechaTermino() {
+        return fecha_termino;
+    }
+
+    public void setFechaTermino(String fecha_termino) {
+        this.fecha_termino = fecha_termino;
     }
 
     public String getDetalle() {
