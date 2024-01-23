@@ -1,5 +1,6 @@
 package com.example.proyecto_ejemplo.Controller;
 
+import com.example.proyecto_ejemplo.Entity.EventoDestacado;
 import com.example.proyecto_ejemplo.Entity.Persona;
 import com.example.proyecto_ejemplo.Service.PersonaServiceIMPL.PSIMPL;
 import com.example.proyecto_ejemplo.Entity.Evento;
@@ -20,7 +21,7 @@ public class Controlador {
     @Autowired
     private ESIMPL eimpl;
 
-
+    /*Rutas get */
     @GetMapping
     @RequestMapping(value = "evento",method = RequestMethod.GET)
     public ResponseEntity<?> consultarEvento(@RequestParam(name = "centroId") int centroId, @RequestParam(name = "mesId") int mesId){
@@ -32,6 +33,20 @@ public class Controlador {
     public ResponseEntity<?> consultarPersona(){
         List<Persona> listaPersona = this.impl.consultarPersona();
         return ResponseEntity.ok(listaPersona);
+    }
+
+    @GetMapping
+    @RequestMapping(value = "persona/{id}",method = RequestMethod.GET)
+    public ResponseEntity<?> buscarPersona(@PathVariable int id){
+        Persona persona = this.impl.buscarPersona(id);
+        return ResponseEntity.ok(persona);
+    }
+
+    @GetMapping
+    @RequestMapping(value = "evento_destacado/{mesId}",method = RequestMethod.GET)
+    public ResponseEntity<?> consultarEventoDestacado(@PathVariable int mesId){
+        List<EventoDestacado> eventoDestacado = this.eimpl.consultarEventoDestacado(mesId);
+        return ResponseEntity.ok(eventoDestacado);
     }
 
     @PostMapping
@@ -47,14 +62,6 @@ public class Controlador {
         Persona personaModificada = this.impl.modificarPersona(persona);
         return ResponseEntity.status(HttpStatus.CREATED).body(personaModificada);
     }
-
-    @GetMapping
-    @RequestMapping(value = "persona/{id}",method = RequestMethod.GET)
-    public ResponseEntity<?> buscarPersona(@PathVariable int id){
-        Persona persona = this.impl.buscarPersona(id);
-        return ResponseEntity.ok(persona);
-    }
-
 
     @DeleteMapping
     @RequestMapping(value = "persona/{id}",method = RequestMethod.DELETE)

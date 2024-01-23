@@ -2,8 +2,8 @@ package com.example.proyecto_ejemplo.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "evento")
-public class Evento {
+@Table(name = "evento_destacado")
+public class EventoDestacado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
